@@ -133,11 +133,16 @@ namespace MakePlacePlugin.Gui
 
         private bool CheckModeForSave()
         {
-            if (Memory.Instance.IsHousingMode()) return true;
-
-            LogError("Unable to save layouts outside of Layout mode");
-            LogLayoutMode();
-            return false;
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                LogError("Unable to save layouts outside of Layout mode");
+                LogLayoutMode();
+                return false;
+            }                      
         }
 
         private bool CheckModeForLoad()
